@@ -39,7 +39,7 @@ var Weather = React.createClass({
         
         function renderMessage () {
             if(isLoading){
-                return <h3>Featching Weather...</h3>;  
+                return <h3 className="text-center">Featching Weather...</h3>;  
                 //if temperature is 0, then it is falsy so we need to compare it to null for the statement to be true
             } else if (temp != null && location != null) {
                 return <WeatherMessage temp = {temp} location = {location}/>;
@@ -48,7 +48,7 @@ var Weather = React.createClass({
         
         return (
             <div>
-                <h3>Weather Component</h3>
+                <h1 className="text-center">Get Weather</h1>
                 
                 <WeatherForm onSearch = {this.handleSearch}/>
                 {renderMessage()}

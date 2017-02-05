@@ -26799,7 +26799,7 @@
 	            if (isLoading) {
 	                return React.createElement(
 	                    "h3",
-	                    null,
+	                    { className: "text-center" },
 	                    "Featching Weather..."
 	                );
 	                //if temperature is 0, then it is falsy so we need to compare it to null for the statement to be true
@@ -26812,9 +26812,9 @@
 	            "div",
 	            null,
 	            React.createElement(
-	                "h3",
-	                null,
-	                "Weather Component"
+	                "h1",
+	                { className: "text-center" },
+	                "Get Weather"
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
 	            renderMessage()
@@ -26857,7 +26857,7 @@
 	                React.createElement("input", { type: "text", ref: "location", placeholder: "Enter city name" }),
 	                React.createElement(
 	                    "button",
-	                    null,
+	                    { className: "button expanded hollow" },
 	                    "Get Weather"
 	                )
 	            )
@@ -26882,7 +26882,7 @@
 	
 	    return React.createElement(
 	        "h3",
-	        null,
+	        { className: "text-center" },
 	        "It is ",
 	        temp,
 	        " in ",
