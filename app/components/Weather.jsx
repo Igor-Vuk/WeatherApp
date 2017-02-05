@@ -10,32 +10,7 @@ var Weather = React.createClass({
             isLoading: false
         };
     },
-    
-    // handleSearch: function(location) {
-    //     var that = this;
-        
-    //     this.setState({isLoading: true});
-    //     openWeatherMap.getTemp(location).then(function(data) {
-    //         //through data we can access other information also
-    //         that.setState({
-    //             location:data.name,
-    //             temp: data.main.temp,
-    //             isLoading:false
-    //         });
-            
-    //     }, function(errorMessage) {
-    //         that.setState({
-    //             isLoading: false,
-    //             //If there is an error it will return the city and temperature of the last previous success
-    //             //We wanna remove the message
-    //             temp:null,
-    //             location: null
-    //         });
-    //         alert(errorMessage);
-    //     });
-    // },
-    
-    
+
     handleSearch: function(location) {
         
         this.setState({isLoading: true});
