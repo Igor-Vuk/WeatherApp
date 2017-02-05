@@ -4,15 +4,6 @@ var app = express();
 const PATH = require("path");
 const PORT = process.env.PORT || 3000;
 
-//app.use(function (req, res, next) {
-//    if(req.headers["x-forwarded-proto"] === "http") {
-//        next();
-//    } else {
-//        res.redirect("http://" + req.hostname + req.url);
-//    }
-//});
-
-
 app.use(function (req, res, next) {
     if(req.headers["x-forwarded-proto"] === "https") {
         res.redirect("http://" + req.hostname + req.url);
@@ -24,7 +15,7 @@ app.use(function (req, res, next) {
 
 app.use(express.static("public"));
 app.get("*", function(req, res) {
-    res.sendFile(path.resolve(__dirname, "public", "index.html"))
+    res.sendFile(PATH.resolve(__dirname, "public", "index.html"))
 })
 
 
