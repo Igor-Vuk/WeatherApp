@@ -1,6 +1,7 @@
 var React = require("react");
 var WeatherForm = require("WeatherForm");
 var WeatherMessage = require("WeatherMessage");
+var ErrorModal = require("ErrorModal");
 var openWeatherMap = require("openWeatherMap");
 
 var Weather = React.createClass({
@@ -13,7 +14,11 @@ var Weather = React.createClass({
 
     handleSearch: function(location) {
         
-        this.setState({isLoading: true});
+        this.setState({
+            isLoading: true,
+            errorMessage: undefined
+        });
+        
         openWeatherMap.getTemp(location).then((data) => {
             //through data we can access other information also
             this.setState({
@@ -22,20 +27,20 @@ var Weather = React.createClass({
                 isLoading:false
             });
             
-        }, (errorMessage) => {
+        }, (e) => {
             this.setState({
                 isLoading: false,
                 //If there is an error it will return the city and temperature of the last previous success
                 //We wanna remove the message
                 temp:null,
-                location: null
+                location: null,
+                errorMessage: e.message
             });
-            alert(errorMessage);
         });
     },
     
     render: function () {
-        var {isLoading, temp, location} = this.state;
+        var {isLoading, temp, location, errorMessage} = this.state;
         
         function renderMessage () {
             if(isLoading){
@@ -44,7 +49,15 @@ var Weather = React.createClass({
             } else if (temp != null && location != null) {
                 return <WeatherMessage temp = {temp} location = {location}/>;
             }
-        }
+        };
+        
+        function renderError() {
+            if(typeof errorMessage === "string") {
+                return (
+                    <ErrorModal/>
+                )
+            }
+        };
         
         return (
             <div>
@@ -52,6 +65,7 @@ var Weather = React.createClass({
                 
                 <WeatherForm onSearch = {this.handleSearch}/>
                 {renderMessage()}
+                {renderError()}
             </div>
         );
     }
