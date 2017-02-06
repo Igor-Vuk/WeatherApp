@@ -26789,6 +26789,7 @@
 	                temp: null,
 	                location: null,
 	                errorMessage: e.message
+	
 	            });
 	        });
 	    },
@@ -26816,7 +26817,7 @@
 	
 	        function renderError() {
 	            if (typeof errorMessage === "string") {
-	                return React.createElement(ErrorModal, null);
+	                return React.createElement(ErrorModal, { message: errorMessage });
 	            }
 	        };
 	
@@ -26916,23 +26917,37 @@
 	var ErrorModal = React.createClass({
 	    displayName: "ErrorModal",
 	
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            title: "Error"
+	        };
+	    },
+	    propTypes: {
+	        title: React.PropTypes.string,
+	        message: React.PropTypes.string.isRequired
+	    },
+	    //this lifecycle method runs right after the components DOM is available. That way we can target error-modal.
 	    componentDidMount: function componentDidMount() {
 	        var modal = new Foundation.Reveal($("#error-modal"));
 	        modal.open();
 	    },
 	    render: function render() {
+	        var _props = this.props,
+	            title = _props.title,
+	            message = _props.message;
+	
 	        return React.createElement(
 	            "div",
 	            { id: "error-modal", className: "reveal tiny text-center", "data-reveal": "" },
 	            React.createElement(
 	                "h4",
 	                null,
-	                "Some Title"
+	                title
 	            ),
 	            React.createElement(
 	                "p",
 	                null,
-	                "Our error message"
+	                message
 	            ),
 	            React.createElement(
 	                "p",
@@ -26967,12 +26982,12 @@
 	
 	        return axios.get(requestUrl).then(function (res) {
 	            if (res.data.cod && res.data.message) {
-	                throw new Error("Unable to fetch weather");
+	                throw new Error(res.data.message);
 	            } else {
 	                return res.data;
 	            }
-	        }, function (res) {
-	            throw new Error("Unable to fetch weather");
+	        }, function (err) {
+	            throw new Error("Unable to fetch the data");
 	        });
 	    }
 	};
