@@ -1,33 +1,6 @@
 var React = require("react");
 var {Link, IndexLink} = require("react-router");
 
-// var Nav = React.createClass({
-//     render: function() {
-//         return (
-//             <div>
-//                 <h2>Nav Component</h2>
-//                 <IndexLink to = "/" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>Get Weather</IndexLink>
-//                 <Link to = "/about" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>About</Link>
-//                 <Link to = "/examples" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>Examples</Link>
-//             </div>
-//         );
-//     }
-// });
-
-
-//var Nav = (props) => {
-//    return (
-//        <div>
-//            <h2>Nav Component</h2>
-//            <IndexLink to = "/" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>Get Weather</IndexLink>
-//            <Link to = "/about" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>About</Link>
-//            <Link to = "/examples" activeClassName = "active" activeStyle = {{fontWeight: "bold"}}>Examples</Link>
-//        </div>
-//    );
-//}    
-
-
-
 var Nav = React.createClass({
     onSearch: function(e) {
         e.preventDefault();
@@ -55,7 +28,7 @@ var Nav = React.createClass({
                     <form onSubmit = {this.onSearch}>
                         <ul className="menu">
                             <li>
-                                <input type="search" placeholder="Search Weather"/>
+                                <input type="search" placeholder="Search weather by city"/>
                             </li>
                             <li>
                                 <input type="submit" className="button" value="Get Weather"/>
@@ -67,14 +40,5 @@ var Nav = React.createClass({
         );
     }
 })
-
-
-
-
-
-
-
-
-
 
 module.exports = Nav;
