@@ -3,6 +3,7 @@ var WeatherForm = require("WeatherForm");
 var WeatherMessage = require("WeatherMessage");
 var ErrorModal = require("ErrorModal");
 var openWeatherMap = require("openWeatherMap");
+var {browserHistory} = require("react-router");
 
 var Weather = React.createClass({
     
@@ -32,12 +33,26 @@ var Weather = React.createClass({
                 isLoading: false,
                 //If there is an error it will return the city and temperature of the last previous success
                 //We wanna remove the message
-                temp:null,
-                location: null,
+                temp:undefined,
+                location: undefined,
                 errorMessage: e.message
                 
             });
         });
+    },
+    componentDidMount: function() {
+        var location = this.props.location.query.location;
+        if(location && location.length > 0) {
+            this.handleSearch(location);
+            browserHistory.push("/")   
+        }
+    },
+    componentWillReceiveProps: function(newProps) {
+        var location = newProps.location.query.location;
+        if(location && location.length > 0) {
+            this.handleSearch(location);
+            browserHistory.push("/");   
+        }    
     },
     
     render: function () {

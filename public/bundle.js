@@ -26641,12 +26641,21 @@
 	    Link = _require.Link,
 	    IndexLink = _require.IndexLink;
 	
+	var _require2 = __webpack_require__(185),
+	    browserHistory = _require2.browserHistory;
+	
 	var Nav = React.createClass({
 	    displayName: "Nav",
 	
 	    onSearch: function onSearch(e) {
 	        e.preventDefault();
-	        alert("Not Yet wired up");
+	        var location = this.refs.search.value;
+	        var encodedLocation = encodeURIComponent(location);
+	
+	        if (location.length > 0) {
+	            this.refs.search.value = "";
+	            browserHistory.push("/?location=" + encodedLocation);
+	        }
 	    },
 	
 	    render: function render() {
@@ -26705,7 +26714,7 @@
 	                        React.createElement(
 	                            "li",
 	                            null,
-	                            React.createElement("input", { type: "search", placeholder: "Search weather by city" })
+	                            React.createElement("input", { type: "search", ref: "search", placeholder: "Search weather by city" })
 	                        ),
 	                        React.createElement(
 	                            "li",
@@ -26732,6 +26741,9 @@
 	var WeatherMessage = __webpack_require__(244);
 	var ErrorModal = __webpack_require__(245);
 	var openWeatherMap = __webpack_require__(246);
+	
+	var _require = __webpack_require__(185),
+	    browserHistory = _require.browserHistory;
 	
 	var Weather = React.createClass({
 	    displayName: "Weather",
@@ -26763,12 +26775,26 @@
 	                isLoading: false,
 	                //If there is an error it will return the city and temperature of the last previous success
 	                //We wanna remove the message
-	                temp: null,
-	                location: null,
+	                temp: undefined,
+	                location: undefined,
 	                errorMessage: e.message
 	
 	            });
 	        });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var location = this.props.location.query.location;
+	        if (location && location.length > 0) {
+	            this.handleSearch(location);
+	            browserHistory.push("/");
+	        }
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	        var location = newProps.location.query.location;
+	        if (location && location.length > 0) {
+	            this.handleSearch(location);
+	            browserHistory.push("/");
+	        }
 	    },
 	
 	    render: function render() {
@@ -28546,7 +28572,7 @@
 	                null,
 	                React.createElement(
 	                    Link,
-	                    { to: "/" },
+	                    { to: "/?location=Zagreb" },
 	                    "Zagreb, CRO"
 	                )
 	            ),
@@ -28555,7 +28581,7 @@
 	                null,
 	                React.createElement(
 	                    Link,
-	                    { to: "/" },
+	                    { to: "/?location=Rio" },
 	                    "Rio, Brazil"
 	                )
 	            )
