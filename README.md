@@ -2,9 +2,6 @@
 ## Get the temperature in celsius searching by the city ##
 ## API key from http://openweathermap.org/ ##
 - - - -
-### DEMO ###
-* Try it out on Heroku
-* http://reactweathertemp.herokuapp.com/
 
 ### Included ###
 * webpack

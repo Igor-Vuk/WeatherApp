@@ -27135,11 +27135,11 @@
 /* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	"use strict";
 	
 	var axios = __webpack_require__(251);
 	
-	var OPEN_WEATHER_MAP_URL = process.env.WEATHER_API;
+	var OPEN_WEATHER_MAP_URL = "http://api.openweathermap.org/data/2.5/weather?appid=07334a5d095804e956b9c6ecba2d0a06&units=metric";
 	
 	module.exports = {
 	    getTemp: function getTemp(location) {
@@ -27157,7 +27157,6 @@
 	        });
 	    }
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ },
 /* 251 */
