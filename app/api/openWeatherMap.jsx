@@ -1,6 +1,6 @@
 var axios = require("axios");
 
-const OPEN_WEATHER_MAP_URL = WEATHER_API
+const OPEN_WEATHER_MAP_URL = process.env.WEATHER_API
 
 
 
