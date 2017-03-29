@@ -27135,11 +27135,11 @@
 /* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 	
 	var axios = __webpack_require__(251);
 	
-	var OPEN_WEATHER_MAP_URL = WEATHER_API;
+	var OPEN_WEATHER_MAP_URL = process.env.WEATHER_API;
 	
 	module.exports = {
 	    getTemp: function getTemp(location) {
@@ -27157,6 +27157,7 @@
 	        });
 	    }
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ },
 /* 251 */
